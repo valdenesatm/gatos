@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adoção de Gatos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fefaf6;
+      color: #333333;
+      line-height: 1.5;
+    }
+
+    header {
+      background-color: #f48bcf;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      font-size: 2.4rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background: url('./img/nino-pequeno-abraza-gato-enfoque-selectivo_472916-42122.avif') center/cover no-repeat;
+      padding: 80px 20px;
+      text-align: left;
+      color: white;
+      background-blend-mode: darken;
+      background-color: rgba(239, 140, 184, 0.4);
+      position: relative;
+    }
+    .bb-parque{
+        position: relative;
+    }
+    .hero h2 {
+      font-size: 3.0rem;
+      color: #f7f5f6;
+      margin-top: 40px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #ea69bd;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+      margin-left: 13%;
+    }
+    .btn:hover {
+      background-color: #e50b9c;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 15px;
+      text-align: center;
+    }
+    .card-content h3 {
+      margin-bottom: 5px;
+      color: #333;
+    }
+    .card-content p {
+      font-size: 0.95rem;
+      color: #666666;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    form label {
+      font-weight: 600;
+      display: block;
+      margin-top: 10px;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    form button {
+      margin-top: 15px;
+      background-color: #ea69bd;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    form button:hover {
+      background-color: #ea69bd;
+    }
+
+    footer {
+      background-color: #ea69bd;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    /* Responsividade extra */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+    }
+ .carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    cursor: grab;
+  }
+  .carousel-track:active {
+    cursor: grabbing;
+  }
+  .carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .card {
+    min-width: 250px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 10px;
+  }
+
+  .prev, .next {
+    background-color: rgba(255, 77, 187, 0.8);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: background 0.3s ease;
+  }
+  .prev:hover, .next:hover {
+    background-color: rgba(244, 159, 224, 0.9);
+  }
+
+  .prev { left: 10px; }
+  .next { right: 10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🐾 Gato Aqui, Gato Acolá</h1>
+    <nav>
+      <a href="#home">Início</a>
+      <a href="#gatos">Gatos</a>
+      <a href="#adotar">Adotar</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+      <a href="#parcerias">Parcerias</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h2>Um Match de Amor Verdadeiro</h2>
+    <a href="#gatos" class="btn">Ver Gatos Disponíveis</a>
+  </section>
+
+<section class="container" id="gatos">
+  <h2>🐱 Gatos para Adoção</h2>
+
+  <div class="carousel">
+    <button class="prev">⟨</button>
+
+    <div class="carousel-track">
+      <div class="card">
+        <img src="./img/download.jpg" alt="Mingau">
+        <div class="card-content">
+          <h3>Mingau</h3>
+          <p>2 anos • Carinhoso</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./img/download (2).jpg" alt="Luna">
+        <div class="card-content">
+          <h3>Luna</h3>
+          <p>1 ano • Brincalhona</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./img/download (1).jpg" alt="Thor">
+        <div class="card-content">
+          <h3>Thor</h3>
+          <p>3 anos • Calmo</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./img/download (3).jpg" alt="Mel">
+        <div class="card-content">
+          <h3>Mel</h3>
+          <p>4 meses • Ativa</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./img/download (4).jpg" alt="Cotoco">
+        <div class="card-content">
+          <h3>Cotoco</h3>
+          <p>6 meses • Ativa</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./img/download (5).jpg" alt="Juarez">
+        <div class="card-content">
+          <h3>Juarez</h3>
+          <p>8 meses • Ativa</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="next">⟩</button>
+  </div>
+</section>
+
+  <section class="container" id="adotar">
+    <h2>📋 Formulário de Adoção</h2>
+    <form>
+      <label>Nome completo</label>
+      <input type="text" required>
+
+      <label>Telefone</label>
+      <input type="tel" required>
+
+      <label>Gato de interesse</label>
+      <select required>
+        <option value="">Selecione...</option>
+        <option>Mingau</option>
+        <option>Luna</option>
+        <option>Thor</option>
+        <option>Preincesa</option>
+        <option>Cotoco</option>
+        <option>Mel</option>
+        <option>Juarez</option>
+      </select>
+
+      <label>Por que deseja adotar?</label>
+      <textarea rows="4" required></textarea>
+
+      <button type="submit">Enviar Solicitação</button>
+    </form>
+  </section>
+
+ <section class="container" id="parcerias">
+  <h2>🤝 Nossas Parcerias</h2>
+  <div class="carousel-track" data-track="parcerias">
+    <div class="parceria-card"><img src="./Parcerias/shopping-dog.jpg" alt="Shop Dog & Cat"></div>
+    <div class="parceria-card"><img src="./Parcerias/milenio-racoes.png" alt="Milênio Rações"></div>
+    <div class="parceria-card"><img src="./Parcerias/altamira-plantas.jpg" alt="Altamira Plantas"></div>
+    <div class="parceria-card"><img src="./Parcerias/vitoria-flores.jpg" alt="Vitória Flores"></div>
+    <div class="parceria-card"><img src="./Parcerias/prefeitura-altamira.png" alt="Prefeitura de Altamira"></div>
+    <div class="parceria-card"><img src="./Parcerias/faculdade-serra-dourada.png" alt="Faculdade Serra Dourada"></div>
+   </div>
+</section>
+
+  <section class="container" id="sobre">
+    <h2>💖 Sobre Nós</h2>
+    <p>Somos pessoas que, diante do sofrimento aninal, decidimos fazer a diferença.</p>
+  </section>
+
+  <section class="container" id="contato">
+    <h2>📞 Contato</h2>
+    <p>Email: gatoaquigatoacola@gmail.com</p>
+    <p>Instagram: <a href="#" target="_blank">@gatoaqui_gatoacola</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Adoção de Gatos • Feito com ❤️ por amantes de felinos</p>
+  </footer>
+
+
+  <script>
+  const track = document.querySelector('.carousel-track');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+  const cardWidth = document.querySelector('.card').offsetWidth + 20; // largura + gap
+
+  // Setas de navegação
+  nextBtn.addEventListener('click', () => {
+    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  });
+  prevBtn.addEventListener('click', () => {
+    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  });
+
+  // Arrastar com mouse e toque
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  track.addEventListener('mousedown', (e) => {
+    isDown = true;
+    track.classList.add('active');
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+
+  track.addEventListener('mouseleave', () => {
+    isDown = false;
+  });
+
+  track.addEventListener('mouseup', () => {
+    isDown = false;
+  });
+
+  track.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5; // velocidade do arraste
+    track.scrollLeft = scrollLeft - walk;
+  });
+
+  // Suporte para celular (touch)
+  track.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+
+  track.addEventListener('touchend', () => {
+    isDown = false;
+  });
+
+  track.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    const x = e.touches[0].pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    track.scrollLeft = scrollLeft - walk;
+  });
+  </script>
+
+
+<script>
+function autoScrollParcerias() {
+  const track = document.querySelector('.carousel-track[data-track="parcerias"]');
+  
+  // Duplica os itens para criar loop infinito
+  track.innerHTML += track.innerHTML;
+
+  let scrollSpeed = 0.5; // velocidade de movimento
+
+  function scroll() {
+    track.scrollLeft += scrollSpeed;
+
+    // Quando chegar no meio, volta pro início sem travar
+    if (track.scrollLeft >= track.scrollWidth / 2) {
+      track.scrollLeft = 0;
+    }
+
+    requestAnimationFrame(scroll); // animação suave
+  }
+
+  scroll();
+}
+
+autoScrollParcerias();
+</script>
+
+
+
+</body>
+</html>
